@@ -36,7 +36,7 @@ public class DefaultDriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    forward = logitechController.getLeftY();
+    forward = -logitechController.getLeftY();
     rotation = logitechController.getRightX();
 
     DRIVETRAIN_SUBSYSTEM.set(forward, rotation);
