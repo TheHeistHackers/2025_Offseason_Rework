@@ -18,9 +18,13 @@ public final class Constants {
   }
 
   public static class DriveConstants {
-    public static final int frontleftDriveMotorPort  = 0;
-    public static final int backLeftDriveMotorPort   = 1;
-    public static final int frontrightDriveMotorPort = 2;
-    public static final int backrightDriveMotorPort  = 3;
+    public static final int frontleftDriveMotorPort  = 4;
+    public static final int backLeftDriveMotorPort   = 7;
+    public static final int frontrightDriveMotorPort = 1;
+    public static final int backrightDriveMotorPort  = 2;
+  }
+
+  public static class RollerConstants {
+    public static final int rollerMotorPort = 5;
   }
 }

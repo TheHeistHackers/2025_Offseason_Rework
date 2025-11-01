@@ -61,10 +61,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
       .follow(rightLeader);
 
     // Apply configuration settings to the motors
-    leftLeader.configure(leftLeaderConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
-    leftFollower.configure(leftFollowerConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
-    rightLeader.configure(rightLeaderConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
-    rightFollower.configure(rightFollowerConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+    leftLeader.configure(leftLeaderConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    leftFollower.configure(leftFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    rightLeader.configure(rightLeaderConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    rightFollower.configure(rightFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     
   }
 
