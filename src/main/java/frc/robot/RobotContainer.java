@@ -5,10 +5,13 @@
 package frc.robot;
 
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.commands.RollCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.RollerSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -20,9 +23,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
-
+  private final RollerSubsystem rollerSubsystem = new RollerSubsystem();
 
   private XboxController logitech = new XboxController(Constants.OperatorConstants.logitechControllerPort);
+  private Trigger rightBumperButton = new JoystickButton(logitech, XboxController.Button.kRightBumper.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -40,6 +44,7 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    rightBumperButton.whileTrue(new RollCommand(rollerSubsystem, 1.0));
   }
 
   private void defaultCommands(){
