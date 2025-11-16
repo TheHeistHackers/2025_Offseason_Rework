@@ -8,25 +8,17 @@ import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.RollCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 
-/**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and trigger mappings) should be declared here.
- */
+
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
-  private final RollerSubsystem rollerSubsystem = new RollerSubsystem();
+  // Subsystems
+  private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+  private final RollerSubsystem roller = new RollerSubsystem();
 
-  private XboxController logitech = new XboxController(Constants.OperatorConstants.logitechControllerPort);
-  private Trigger rightBumperButton = new JoystickButton(logitech, XboxController.Button.kRightBumper.value);
+  // Controller
+  private final CommandXboxController logitech = new CommandXboxController(Constants.OperatorConstants.logitechControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -34,21 +26,12 @@ public class RobotContainer {
     defaultCommands();
   }
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
   private void configureBindings() {
-    rightBumperButton.whileTrue(new RollCommand(rollerSubsystem, 1.0));
+    logitech.rightBumper().whileTrue(new RollCommand(roller, 1.0));
   }
 
   private void defaultCommands(){
-    drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(drivetrainSubsystem, logitech));
+    drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, logitech));
   }
 
   /**
@@ -57,7 +40,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
     return null;
   }
 }
