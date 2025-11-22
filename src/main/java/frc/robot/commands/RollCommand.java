@@ -22,7 +22,6 @@ public class RollCommand extends Command {
 
   @Override
   public void initialize() {
-    speed = 0;
   }
 
   @Override

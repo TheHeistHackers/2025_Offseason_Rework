@@ -14,14 +14,18 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
   // Subsystems
-  private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
-  private final RollerSubsystem roller = new RollerSubsystem();
+  private final DrivetrainSubsystem drivetrain;
+  private final RollerSubsystem roller;
 
   // Controller
-  private final CommandXboxController logitech = new CommandXboxController(Constants.OperatorConstants.logitechControllerPort);
+  public final CommandXboxController logitech;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    drivetrain = new DrivetrainSubsystem();
+    roller = new RollerSubsystem();
+    logitech = new CommandXboxController(Constants.OperatorConstants.logitechControllerPort);
+
     configureBindings();
     defaultCommands();
   }

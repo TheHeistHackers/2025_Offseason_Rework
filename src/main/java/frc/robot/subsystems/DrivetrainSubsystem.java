@@ -41,7 +41,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     //    -- Limit current to 50 AMPS
     //    -- Set idle mode to BRAKE */
     globalDriveConfig
-      .smartCurrentLimit(50)
+      .smartCurrentLimit(40)
       .idleMode(IdleMode.kBrake);
 
     leftLeaderConfig
