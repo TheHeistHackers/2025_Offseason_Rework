@@ -21,8 +21,4 @@ public final class Constants {
     public static final int rollerMotorPort = 5;
   }
 
-  public static class LEDConstants {
-    public static final int LEDPort = 4;
-    public static final int LED_len = 300;
-  }
 }
