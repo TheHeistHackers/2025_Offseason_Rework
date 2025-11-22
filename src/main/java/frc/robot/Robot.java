@@ -4,7 +4,15 @@
 
 package frc.robot;
 
+import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.MetersPerSecond;
+
+import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.LEDPattern;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -17,6 +25,12 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private final RobotContainer m_robotContainer;
+  private final AddressableLED m_led;
+  private final AddressableLEDBuffer m_ledBuffer;
+  private final LEDPattern m_rainbow = LEDPattern.rainbow(255, 128);
+  private static final Distance kLedSpacing = Meters.of(1 / 120.0);
+  private final LEDPattern m_scrollingRainbow =
+      m_rainbow.scrollAtAbsoluteSpeed(MetersPerSecond.of(1), kLedSpacing);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -26,6 +40,14 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    // LED Code
+    m_led = new AddressableLED(4);
+    m_ledBuffer = new AddressableLEDBuffer(300);
+    m_led.setLength(m_ledBuffer.getLength());
+    m_led.setData(m_ledBuffer);
+    m_led.start();
+
   }
 
   /**
@@ -42,6 +64,9 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods. This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    m_scrollingRainbow.applyTo(m_ledBuffer);
+    m_led.setData(m_ledBuffer);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
