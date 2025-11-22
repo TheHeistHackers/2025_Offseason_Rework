@@ -24,7 +24,7 @@ public class RollerSubsystem extends SubsystemBase {
     SparkMaxConfig rollerConfig = new SparkMaxConfig();
 
     rollerConfig
-      .smartCurrentLimit(30)
+      .smartCurrentLimit(40)
       .idleMode(IdleMode.kBrake)
       .inverted(false);
 
@@ -33,7 +33,6 @@ public class RollerSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
   }
 
   public void set(double speed){
