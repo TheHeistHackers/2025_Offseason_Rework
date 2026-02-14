@@ -8,6 +8,7 @@ import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.RollCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
+import frc.robot.subsystems.LEDs.LEDSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
@@ -16,6 +17,7 @@ public class RobotContainer {
   // Subsystems
   private final DrivetrainSubsystem drivetrain;
   private final RollerSubsystem roller;
+  private final LEDSubsystem leds;
 
   // Controller
   public final CommandXboxController logitech;
@@ -24,6 +26,8 @@ public class RobotContainer {
   public RobotContainer() {
     drivetrain = new DrivetrainSubsystem();
     roller = new RollerSubsystem();
+    leds = new LEDSubsystem();
+
     logitech = new CommandXboxController(Constants.OperatorConstants.logitechControllerPort);
 
     configureBindings();
