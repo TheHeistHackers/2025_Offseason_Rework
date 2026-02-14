@@ -36,10 +36,10 @@ public class LEDSubsystem extends SubsystemBase {
     // Teleop LED Pattern Call
     new Trigger(DriverStation::isTeleopEnabled)
             .and(LEDSubsystem::isRedAlliance)
-            .onTrue(runPattern(LEDPatterns.SCROLLING_RAINBOW));
+            .onTrue(runPattern(LEDPatterns.RED));
     new Trigger(DriverStation::isTeleopEnabled)
             .and(() -> !isRedAlliance())
-            .onTrue(runPattern(LEDPatterns.SCROLLING_RAINBOW));
+            .onTrue(runPattern(LEDPatterns.BLUE));
 
     // Disabled LED Pattern Call
     new Trigger(DriverStation::isDisabled)
